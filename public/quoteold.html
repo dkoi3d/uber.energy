@@ -1,0 +1,489 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Standard Meta -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <!-- Site Properties -->
+    <title>Fixed Menu Example - Semantic</title>
+
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/reset.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/site.css">
+
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/container.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/grid.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/header.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/image.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/menu.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/embed.css">
+
+
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/divider.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/dropdown.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/segment.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/button.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/list.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/icon.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/sidebar.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/transition.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/form.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/popup.css">
+
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="semantic/dist/semantic.min.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyA3dkKd4Ms9DhqM4FbzCcCj8DKfWx4Kpy8",
+            authDomain: "uber-energy-2a7d5.firebaseapp.com",
+            databaseURL: "https://uber-energy-2a7d5.firebaseio.com",
+            projectId: "uber-energy-2a7d5",
+            storageBucket: "uber-energy-2a7d5.appspot.com",
+            messagingSenderId: "264267070626"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <style type="text/css">
+
+        .hidden.menu {
+            display: none;
+        }
+
+        .masthead.segment {
+            min-height: 700px;
+            padding: 1em 0em;
+        }
+        .masthead .logo.item img {
+            margin-right: 1em;
+        }
+        .masthead .ui.menu .ui.button {
+            margin-left: 0.5em;
+        }
+        .masthead h1.ui.header {
+            margin-top: 3em;
+            margin-bottom: 0em;
+            font-size: 4em;
+            font-weight: normal;
+        }
+        .masthead h2 {
+            font-size: 1.7em;
+            font-weight: normal;
+        }
+
+        .ui.vertical.stripe {
+            padding: 8em 0em;
+        }
+        .ui.vertical.stripe h3 {
+            font-size: 2em;
+        }
+        .ui.vertical.stripe .button + h3,
+        .ui.vertical.stripe p + h3 {
+            margin-top: 3em;
+        }
+        .ui.vertical.stripe .floated.image {
+            clear: both;
+        }
+        .ui.vertical.stripe p {
+            font-size: 1.33em;
+        }
+        .ui.vertical.stripe .horizontal.divider {
+            margin: 3em 0em;
+        }
+
+        .quote.stripe.segment {
+            padding: 0em;
+        }
+        .quote.stripe.segment .grid .column {
+            padding-top: 5em;
+            padding-bottom: 5em;
+        }
+
+        .footer.segment {
+            padding: 5em 0em;
+        }
+        .cool-link {
+            display: inline-block;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .cool-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #ffffff;
+            transition: width .3s;
+        }
+
+        .cool-link:hover::after {
+            width: 100%;
+        //transition: width .3s;
+        }
+
+
+        .secondary.pointing.menu .toc.item {
+            display: none;
+        }
+
+        @media only screen and (max-width: 700px) {
+            .ui.fixed.menu {
+                display: none !important;
+            }
+            .secondary.pointing.menu .item,
+            .secondary.pointing.menu .menu {
+                display: none;
+            }
+            .secondary.pointing.menu .toc.item {
+                display: block;
+            }
+            .masthead.segment {
+                min-height: 350px;
+            }
+            .masthead h1.ui.header {
+                font-size: 2em;
+                margin-top: 1.5em;
+            }
+            .masthead h2 {
+                margin-top: 0.5em;
+                font-size: 1.5em;
+            }
+        }
+
+
+    </style>
+
+    <script src="semantic/dist/components/visibility.js"></script>
+    <script src="semantic/dist/components/sidebar.js"></script>
+    <script src="semantic/dist/components/transition.js"></script>
+    <script>
+        $(document)
+            .ready(function() {
+
+                // fix menu when passed
+                $('.masthead')
+                    .visibility({
+                        once: false,
+                        onBottomPassed: function() {
+                            $('.fixed.menu').transition('fade in');
+                        },
+                        onBottomPassedReverse: function() {
+                            $('.fixed.menu').transition('fade out');
+                        }
+                    })
+                ;
+
+                // create sidebar and attach to menu open
+                $('.ui.sidebar')
+                    .sidebar('attach events', '.toc.item')
+                ;
+
+            })
+        ;
+    </script>
+</head>
+<body>
+
+<!-- Sidebar Menu -->
+<div class="ui vertical inverted sidebar menu">
+    <a class="active item">Home</a>
+    <a class="item">Charging</a>
+    <a class="item">Commercial & Retail</a>
+    <a class="item">Fleet & Public</a>
+    <a class="item">Design Management</a>
+
+</div>
+
+<div class="ui fixed inverted menu">
+    <div class="ui inverted vertical center aligned segment">
+
+        <div class="ui container">
+            <div class="ui large secondary inverted pointing menu">
+                <a class="toc item">
+                    <i class="sidebar icon"></i>
+                </a>
+                <a class="cool-link item ">Home</a>
+                <a class="cool-link item ">Charging</a>
+                <a class="item cool-link">Commercial & Retail</a>
+                <a class="item cool-link">Fleet & Public</a>
+                <a class="item cool-link">Design Management</a>
+                <div class="right item">
+                    <a class="ui inverted button">Contact Us</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div class="ui main container">
+        <h3>Please fill out info so we may generate an estimate and have the information needed for permitting and placing an order.</h3>
+    We know this can be tricky so please feel free to fill in any comments or questions at the bottom of this sheet. We want to make sure you have the best possible charger and design !!!
+    <h3>Information Collection, Use, and Sharing</h3>
+        <p>We are the sole owners of the information collected on this site. We only have access to/collect information that you voluntarily give us via email or other direct contact from you.  We will not sell or rent this information to anyone.
+    We will use your information to respond to you, regarding the reason you contacted us.  We will not share your information with any third party outside of our organization, other than as necessary to fulfill your request, e.g. to ship an order.</p>
+    </div>
+
+
+
+
+<div class="ui main container">
+    <form class="ui form">
+        <h4 class="ui dividing header">Contact Information</h4>
+        <div class="field">
+            <label>Name</label>
+            <div class="two fields">
+                <div  class="field">
+                    <input id="firstName" type="text" name="shipping[first-name]" placeholder="First Name">
+                </div>
+                <div class="field">
+                    <input id="lastName" type="text" name="shipping[last-name]" placeholder="Last Name">
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label>Home Address</label>
+            <div class="fields">
+                <div class="twelve wide field">
+                    <input id="homeAddress" type="text" name="shipping[address]" placeholder="Street Address">
+                </div>
+                <div class="four wide field">
+                    <input type="text" name="shipping[address-2]" placeholder="Apt #">
+                </div>
+            </div>
+        </div>
+        <div class="two fields">
+            <div class="field">
+                <label>State</label>
+                <select class="ui fluid search dropdown" id="state">
+                    <option value="">State</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="DC">District Of Columbia</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                </select>
+            </div>
+            <div class="field">
+             <label>Email Address</label>
+                <input id="email" type="email" placeholder="you@domain.com">
+            </div>
+        </div>
+        <h4 class="ui dividing header">Tell Us About Your New Car</h4>
+        <div class="three fields">
+            <div class="field">
+                <label>Tesla Model</label>
+
+                <select class="ui fluid search dropdown" placeholder="Tesla Model">
+
+
+                    <option>Model 3 (Pre Order)</option>
+                    <option>Model S</option>
+                    <option>Model X</option>
+                    <option>Tesla Power wall or Solar Array</option>
+
+
+                </select>
+            </div>
+            <div class="required field">
+                <label>What KW battery did you purchase?</label>
+                                <select class="ui fluid search dropdown">
+                    <option></option>
+                    <option>Model 3 Standard</option>
+                    <option>Model 3 Long Range</option>
+                    <option>60KW</option>
+                    <option>75KW</option>
+                    <option>85KW</option>
+                    <option>90KW</option>
+                    <option>100KW</option>
+
+                </select>
+            </div>
+            <div class="field">
+
+                <label>What Type of Outlet? <i class="help circle icon link popup1" data-content="This is a child element to the page's body and will not be styled"></i></label>
+
+
+                <select class="ui fluid search dropdown" name="Breaker Panel">
+                    <option value=""></option>
+                    <option value="1">50 amp - NEMA 14-50 dryer style outlet</option>
+                    <option value="2">60 amp - Tesla wall connector upgrade</option>
+                    <option value="3">70 amp - Tesla wall connector upgrade</option>
+                    <option value="4">100 amp - For Model S/X only</option>
+                    <option value="5">Wall connector with painted or power coated raceway to blend into surroundings</option>
+
+                </select>
+            </div>
+            <div class="field">
+                <label>Did you purchase a wall connector?</label>
+                <select class="ui fluid search dropdown">
+                    <option></option>
+
+                    <option>Yes - I did purchase a wall connector</option>
+                    <option>No - I did not purchase a wall connector</option>
+                    <option>Not Sure</option>
+                </select>
+            </div>
+        </div>
+        <h4 class="ui dividing header">Installation</h4>
+        <div class="three fields">
+
+
+            <div class="field">
+                <label>What size electrical service do you have? </label>
+                        <select class="ui fluid search dropdown" name="Breaker Panel">
+                            <option value=""></option>
+                            <option value="1">100 Amp Breaker Panel</option>
+                            <option value="2">200 Amp Braeker Panel</option>
+                            <option value="3">400 Amp Breaker Panel (Usually 2-200 separate panels)</option>
+                            <option value="4">I am unsure but can take a photo</option>
+                            <option value="5">I need you to come out and look</option>
+
+                        </select>
+                    </div>
+            <div class="field">
+
+                <label>Where is your Electrical panel Located? <i class="help circle icon link popup1" data-content="This is a child element to the page's body and will not be styled"></i></label>
+
+
+                <select class="ui fluid search dropdown" name="Breaker Panel">
+                    <option value=""></option>
+                    <option value="1">My panel is in the Garage</option>
+                    <option value="2">My panel is in a room next to the garage</option>
+                    <option value="3">My panel is in an unfinished basement</option>
+                    <option value="4">My panel is in a finished basement</option>
+                    <option value="5">My panel is a few rooms away from the garage</option>
+                    <option value="5">My panel is outside or in a detached garage</option>
+                    <option value="5">I am not sure, I need an on-site visit</option>
+                </select>
+            </div>
+            <div class="field">
+                <label>What size electrical service do you have? </label>
+                <select class="ui fluid search dropdown" name="Breaker Panel">
+                    <option value=""></option>
+                    <option value="1">100 Amp Breaker Panel</option>
+                    <option value="2">200 Amp Braeker Panel</option>
+                    <option value="3">400 Amp Breaker Panel (Usually 2-200 separate panels)</option>
+                    <option value="4">I am unsure but can take a photo</option>
+                    <option value="5">I need you to come out and look</option>
+
+                </select>
+            </div>
+                </div>
+        <div class="two fields">
+
+
+            <div class="field">
+                <label>What is the distance from the plug to breaker box? </label>
+                <select class="ui fluid search dropdown" name="Breaker Panel">
+                    <option value=""></option>
+                    <option value="1">10 feet - the outlet should be placed below the panel</option>
+                    <option value="2">20 feet - the outlet should be placed just around the corner</option>
+                    <option value="3">40 feet - the outlet should be placed across the garage (1 door over)</option>
+                    <option value="4">50 feet - the outlet should be placed across the garage (2 doors over)</option>
+                    <option value="5">50+ feet - the outlet and panel box are not in the same room</option>
+
+                </select>
+            </div>
+
+
+        </div>
+
+
+        <h4 class="ui dividing header">Receipt</h4>
+        <div class="field">
+            <label>Send Receipt To:</label>
+            <div class="ui fluid multiple search selection dropdown">
+                <input type="hidden" name="receipt">
+                <i class="dropdown icon"></i>
+                <div class="default text">Saved Contacts</div>
+
+            </div>
+        </div>
+        <div class="ui segment">
+            <div class="field">
+                <div class="ui toggle checkbox">
+                    <input type="checkbox" name="gift" tabindex="0" class="hidden">
+                    <label>Do not include a receipt in the package</label>
+                </div>
+            </div>
+        </div>
+
+        <div id="submitEmail" class="ui button" tabindex="0">Submit Order</div>
+    </form>
+</div>
+
+<div class="ui inverted vertical footer segment" style="padding: 1em;">
+    <div class="ui center aligned container">
+
+        <div class="ui inverted section divider footer"></div>
+
+        <div class="ui horizontal inverted small divided link list">
+            <a class="item" href="#">Site Map</a>
+            <a class="item" href="#">Contact Us</a>
+            <a class="item" href="#">Terms and Conditions</a>
+            <a class="item" href="#">Privacy Policy</a>
+        </div>
+    </div>
+</div>
+
+<script src="semantic/dist/components/popup.js"></script>
+<script src="js/popup.js"></script>
+<script src="semantic/dist/semantic.min.js"></script>
+<script src="js/global.js"></script>
+
+</body>
+
+</html>

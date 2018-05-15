@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Standard Meta -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <!-- Site Properties -->
+    <title>Uber Energy</title>
+
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/reset.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/site.css">
+
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/container.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/grid.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/header.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/image.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/menu.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/embed.css">
+
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/divider.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/dropdown.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/segment.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/button.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/list.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/icon.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/sidebar.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/components/transition.css">
+
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="semantic/dist/semantic.min.js"></script>
+
+
+
+
+    <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyA3dkKd4Ms9DhqM4FbzCcCj8DKfWx4Kpy8",
+            authDomain: "uber-energy-2a7d5.firebaseapp.com",
+            databaseURL: "https://uber-energy-2a7d5.firebaseio.com",
+            projectId: "uber-energy-2a7d5",
+            storageBucket: "uber-energy-2a7d5.appspot.com",
+            messagingSenderId: "264267070626"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+    <style type="text/css">
+
+        .hidden.menu {
+            display: none;
+        }
+
+        .masthead.segment {
+            min-height: 50px;
+            padding: .25em 0em;
+        }
+        .masthead .logo.item img {
+            margin-right: 1em;
+        }
+        .masthead .ui.menu .ui.button {
+            margin-left: 0.5em;
+        }
+        .masthead h1.ui.header {
+            margin-top: 3em;
+            margin-bottom: 0em;
+            font-size: 4em;
+            font-weight: normal;
+        }
+        .masthead h2 {
+            font-size: 1.7em;
+            font-weight: normal;
+        }
+
+        .ui.vertical.stripe {
+            padding: 8em 0em;
+        }
+        .ui.vertical.stripe h3 {
+            font-size: 2em;
+        }
+        .ui.vertical.stripe .button + h3,
+        .ui.vertical.stripe p + h3 {
+            margin-top: 3em;
+        }
+        .ui.vertical.stripe .floated.image {
+            clear: both;
+        }
+        .ui.vertical.stripe p {
+            font-size: 1.33em;
+        }
+        .ui.vertical.stripe .horizontal.divider {
+            margin: 3em 0em;
+        }
+
+        .quote.stripe.segment {
+            padding: 0em;
+        }
+        .quote.stripe.segment .grid .column {
+            padding-top: 5em;
+            padding-bottom: 5em;
+        }
+
+        .footer.segment {
+            padding: 5em 0em;
+        }
+        .cool-link {
+            display: inline-block;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .cool-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #ffffff;
+            transition: width .3s;
+        }
+
+        .cool-link:hover::after {
+            width: 100%;
+        //transition: width .3s;
+        }
+
+
+        .secondary.pointing.menu .toc.item {
+            display: none;
+        }
+
+        @media only screen and (max-width: 700px) {
+            .ui.fixed.menu {
+                display: none !important;
+            }
+            .secondary.pointing.menu .item,
+            .secondary.pointing.menu .menu {
+                display: none;
+            }
+            .secondary.pointing.menu .toc.item {
+                display: block;
+            }
+
+            .masthead h1.ui.header {
+                font-size: 2em;
+                margin-top: 1.5em;
+            }
+            .masthead h2 {
+                margin-top: 0.5em;
+                font-size: 1.5em;
+            }
+        }
+
+
+    </style>
+
+    <script src="semantic/dist/components/visibility.js"></script>
+    <script src="semantic/dist/components/sidebar.js"></script>
+    <script src="semantic/dist/components/transition.js"></script>
+    <script>
+        $(document)
+            .ready(function() {
+
+                // fix menu when passed
+                $('.masthead')
+                    .visibility({
+                        once: false,
+                        onBottomPassed: function() {
+                            $('.fixed.menu').transition('fade in');
+                        },
+                        onBottomPassedReverse: function() {
+                            $('.fixed.menu').transition('fade out');
+                        }
+                    })
+                ;
+
+                // create sidebar and attach to menu open
+                $('.ui.sidebar')
+                    .sidebar('attach events', '.toc.item')
+                ;
+
+            })
+        ;
+    </script>
+
+</head>
+<body>
+
+<!-- Following Menu -->
+
+
+<!-- Sidebar Menu -->
+<div class="ui vertical inverted sidebar menu">
+    <a class="item" href="index.html">Home</a>
+    <a class="active item ">Get a Quote</a>
+    <a class="item popup1" style= "color:#767676 !important" data-title="Coming Soon" data-position="bottom right">Commercial & Retail</a>
+    <a class="item popup1" style= "color:#767676 !important" data-title="Coming Soon" data-position="bottom right">Fleet & Public</a>
+    <a class="item popup1" style= "color:#767676 !important" data-title="Coming Soon" data-position="bottom right">Design Management</a>
+
+</div>
+
+
+
+<!-- Page Contents -->
+<div class="pusher">
+    <div class="ui inverted vertical masthead aligned segment">
+
+        <div class="ui container">
+            <div class="ui large secondary inverted pointing menu">
+                <a class="toc item">
+                    <i class="sidebar icon"></i>
+                </a>
+
+                <a class="cool-link item " href="index.html">Home</a>
+                <a class="cool-link active item ">Get A Quote</a>
+                <a class="item cool-link popup1" style= "color:#767676 !important" data-title="Coming Soon" data-position="bottom center">Commercial & Retail</a>
+                <a class="item cool-link popup1" style= "color:#767676 !important" data-title="Coming Soon" data-position="bottom center">Fleet & Public</a>
+                <a class="item cool-link popup1" style= "color:#767676 !important" data-title="Coming Soon" data-position="bottom center">Design Management</a>
+                <div class="right item">
+                    <a class="ui inverted button" href="http://www.phcurrent.com/5.html">Contact Us</a>
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+        <div class="ui main text container" style="padding-top: 75px;">
+            <h1 class="ui header">Privacy Policy</h1>
+            <h4>Last updated: 8.1.2017 </h4>
+
+                <p>PH Current ("us", "we", or "our") operates uber.energy.com (the "Site"). This page informs you of our policies regarding the collection, use and disclosure of Personal Information we receive from users of the Site.
+
+                We use your Personal Information only for providing and improving the Site. By using the Site, you agree to the collection and use of information in accordance with this policy.
+            </p>
+            <h3>Information Collection and Use</h3>
+            <p>We are the sole owners of the information collected on this site. We only have access to/collect information that you voluntarily give us via email or other direct contact from you.  We will not sell or rent this information to anyone.
+                We will use your information to respond to you, regarding the reason you contacted us.  We will not share your information with any third party outside of our organization, other than as necessary to fulfill your request, e.g. to ship an order.
+            </p>
+            <h3>Cookies</h3>
+            <p>
+
+                Cookies are files with small amount of data, which may include an anonymous unique identifier. Cookies are sent to your browser from a web site and stored on your computer's hard drive.
+
+                Like many sites, we use "cookies" to collect information. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Site.
+            </p>
+
+            <h3>Security</h3>
+
+            <p>The security of your Personal Information is important to us, but remember that no method of transmission over the Internet, or method of electronic storage, is 100% secure. While we strive to use commercially acceptable means to protect your Personal Information, we cannot guarantee its absolute security.</p>
+
+            <h3>Changes to Policy</h3>
+            <p>This Privacy Policy is effective as of 8.1.2017 and will remain in effect except with respect to any changes in its provisions in the future, which will be in effect immediately after being posted on this page.
+
+                We reserve the right to update or change our Privacy Policy at any time and you should check this Privacy Policy periodically. Your continued use of the Service after we post any modifications to the Privacy Policy on this page will constitute your acknowledgment of the modifications and your consent to abide and be bound by the modified Privacy Policy.
+
+                If we make any material changes to this Privacy Policy, we will notify you either through the email address you have provided us, or by placing a prominent notice on our website.
+            </p>
+
+        </div>
+
+
+    <div class="ui inverted vertical footer segment" style="padding: 1em;">
+        <div class="ui center aligned container">
+
+            <div class="ui inverted section divider footer"></div>
+
+            <div class="ui horizontal inverted small divided link list">
+                <a class="item" href="#">Site Map</a>
+                <a class="item" href="#">Contact Us</a>
+                <a class="item" href="#">Terms and Conditions</a>
+                <a class="item" href="#">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="semantic/dist/components/popup.js"></script>
+    <script src="js/popup.js"></script>
+
+    <script src="js/global.js"></script>
+    <script src="js/formValidation.js"></script>
+    <script src="semantic/dist/components/embed.js"></script>
+    <script src="semantic/dist/semantic.min.js"></script>
+    <script src="js/embed.js"></script>
+</div>
+
+</body>
+
+</html>
